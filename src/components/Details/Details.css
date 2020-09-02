@@ -1,0 +1,22 @@
+.imageContainer {
+  margin-top: 140px;
+}
+.businessName {
+  text-align: center;
+  margin-top: 36px;
+  color: #1d3557;
+}
+.card-text b {
+  font-family: fantasy;
+  color: #1d3557;
+}
+.card-text {
+  font-family: fantasy;
+  color: #3a7ac3;
+}
+.businessName {
+  font-family: fantasy;
+}
+.lodingGif {
+  margin-top: 100px;
+}

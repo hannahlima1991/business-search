@@ -1,0 +1,13 @@
+.navbar {
+  background-color: #9eebfa;
+}
+.navbar-brand {
+  font-family: fantasy;
+  color: #1d3557 !important;
+  margin-top: 12px;
+}
+.nav-link {
+  font-family: fantasy;
+  color: #1d3557 !important;
+  margin-top: 12px;
+}

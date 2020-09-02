@@ -1,0 +1,39 @@
+.userInput {
+  margin-top: 36px;
+}
+.searchButton {
+  margin-left: 3px;
+  border-radius: 5px;
+  border: 1px solid #1d3557;
+  height: 30px;
+  color: #1d3557;
+  background-color: white;
+}
+.searchButton:hover {
+  margin-left: 3px;
+  border-radius: 5px;
+  border: 1px solid #1d3557;
+  height: 30px;
+  color: white;
+  background-color: #1d3557;
+}
+.container {
+  margin-top: 36px;
+}
+.card {
+  margin: 10px 15px;
+  min-height: 160px;
+  min-width: 300px;
+  position: relative;
+}
+.card-title b {
+  color: #1d3557;
+  margin: auto;
+  font-family: fantasy;
+}
+.verticalCenter {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
