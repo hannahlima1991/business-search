@@ -1,5 +1,13 @@
+.wrapper {
+  text-align: center;
+  background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/spikes.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
 .userInput {
-  margin-top: 36px;
+  padding-top: 36px;
 }
 .searchButton {
   margin-left: 3px;
