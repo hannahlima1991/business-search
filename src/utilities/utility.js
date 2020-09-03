@@ -19,10 +19,14 @@ export function doCORSRequest(options, dataHandler) {
 
 export const zipCodeDataHandler = (data) => {
   const { latitude, longitude } = JSON.parse(data.target.response);
-  return {
-    longitude,
-    latitude,
-  };
+  if (latitude && longitude) {
+    return {
+      longitude,
+      latitude,
+    };
+  } else {
+    return null;
+  }
 };
 export const yelpDataHandler = (data) => {
   const { businesses } = JSON.parse(data.target.response);

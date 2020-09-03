@@ -26,7 +26,12 @@ function Home() {
     const locationData = await doCORSRequest(options, zipCodeDataHandler).then(
       (data) => data
     );
-    getBusinessesApiCall(locationData);
+    if (locationData) {
+      getBusinessesApiCall(locationData);
+    } else {
+      setLoading(false);
+      alert("Zip Code in invalid!");
+    }
   };
 
   //YELP BUSINESS API
@@ -36,7 +41,8 @@ function Home() {
     const options = {
       method: "GET",
       url:
-        yelpApiRequest + `/search?latitude=${latitude}&longitude=${longitude}`,
+        yelpApiRequest +
+        `/search?latitude=${latitude}&longitude=${longitude}&sort_by=distance`,
     };
     const listOfBusinesses = await doCORSRequest(options, yelpDataHandler).then(
       (data) => data
@@ -54,6 +60,7 @@ function Home() {
         <input
           className="textBox"
           placeholder="Insert Zip Code"
+          type="number"
           value={inputValue}
           onChange={(event) => {
             setInputValue(event.target.value);
@@ -76,27 +83,31 @@ function Home() {
           <div className="row businessCard">
             {businessList.map((business, i) => {
               const businessId = "/business/" + business.id;
-              const { id, name, rating } = business;
+              const { id, name, rating, distance } = business;
+
               return (
                 <div className="col-lg-4 businessCardList" key={i}>
-                  <Link to={businessId}>
-                    <div className="card">
-                      <div className="card-body verticalCenter text-center w-100">
+                  <div className="card">
+                    <div className="card-body verticalCenter text-center w-100">
+                      <Link to={businessId}>
                         <h4 className="card-title">
                           <b>{name}</b>
+                          <p className="distanceMarker">
+                            {Math.round(distance)}m.
+                          </p>
                         </h4>
-                        <div className="d-flex justify-content-center">
-                          <ReactStars
-                            count={5}
-                            value={rating}
-                            size={24}
-                            color2="#ffd700"
-                            edit={false}
-                          />
-                        </div>
+                      </Link>
+                      <div className="d-flex justify-content-center">
+                        <ReactStars
+                          count={5}
+                          value={rating}
+                          size={24}
+                          color2="#ffd700"
+                          edit={false}
+                        />
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </div>
               );
             })}

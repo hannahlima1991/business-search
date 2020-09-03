@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <div className="navigationBar">
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-dark">
         <Link to="/">
           <p className="navbar-brand" href="#">
             Business Finder
