@@ -9,12 +9,14 @@ import {
 import { Link } from "react-router-dom";
 import ReactStars from "react-stars";
 
+//This are my hooks and usig them I will be able to manage and change states.
 function Home() {
   const [inputValue, setInputValue] = useState("");
   const [businessList, setBusinessList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  //ZIPCODE API
+  //I have a second api that translates zip code to lat,lng, this was necessary because Yelp's api doens't work with zip code
+  //ZIPCODE API- The zip code function works by passing the user input variable as an argument,and wait for doCorsRequest to give me back the data
   const zipCodeLocation = async (userInput) => {
     const zipCodeApiKey = "UnWxhm2IIMISFP3afI7j";
     const apiRequest = `https://api.geolake.com/geocode?api_key=${zipCodeApiKey}&country=US&q=${userInput}`;
@@ -26,6 +28,7 @@ function Home() {
     const locationData = await doCORSRequest(options, zipCodeDataHandler).then(
       (data) => data
     );
+    //if locationData returns true, give the data,if it doesn't stop the loading gif and notify the user
     if (locationData) {
       getBusinessesApiCall(locationData);
     } else {
@@ -34,7 +37,7 @@ function Home() {
     }
   };
 
-  //YELP BUSINESS API
+  //YELP BUSINESS API-This function works the same way as the zip code one
   const getBusinessesApiCall = async (locationData) => {
     const yelpApiRequest = "https://api.yelp.com/v3/businesses";
     const { latitude, longitude } = locationData;
@@ -47,6 +50,7 @@ function Home() {
     const listOfBusinesses = await doCORSRequest(options, yelpDataHandler).then(
       (data) => data
     );
+    //setLoading(false) makes the loading gif stops when the fetch request for thelistOfBusinesses comes back.
     setLoading(false);
     setBusinessList(listOfBusinesses);
   };
@@ -54,11 +58,14 @@ function Home() {
   return (
     <div
       className="wrapper"
+      //programatic style for backgrouwnd image
       style={{ height: businessList.length === 0 ? "100vh" : "100%" }}
     >
-      <div className="userInput">
+      {/* receives the userInput as value by using the hook,once the button is clicked it sets the loding gif */}
+      {/* back on and triggers the zip code function using the inputValue as an argument */}
+      <div className="user-input">
         <input
-          className="textBox"
+          className="text-box"
           placeholder="Insert Zip Code"
           type="number"
           value={inputValue}
@@ -67,7 +74,7 @@ function Home() {
           }}
         ></input>
         <button
-          className="searchButton"
+          className="search-button"
           onClick={() => {
             setLoading(true);
             zipCodeLocation(inputValue);
@@ -77,27 +84,30 @@ function Home() {
         </button>
       </div>
       <div className="container">
+        {/* loading Gif ternary,if loading,show me gif,if the response is back, show me the data */}
         {loading ? (
-          <img className="lodingGif" src={catGif} />
+          <img className="loding-gif" src={catGif} />
         ) : (
-          <div className="row businessCard">
+          <div className="row business-card">
             {businessList.map((business, i) => {
               const businessId = "/business/" + business.id;
+              // getting only the keys i need from the responseObject
               const { id, name, rating, distance } = business;
 
               return (
-                <div className="col-lg-4 businessCardList" key={i}>
+                <div className="col-lg-4 business-card-list" key={i}>
                   <div className="card">
-                    <div className="card-body verticalCenter text-center w-100">
+                    <div className="card-body vertical-center text-center w-100">
                       <Link to={businessId}>
                         <h4 className="card-title">
                           <b>{name}</b>
-                          <p className="distanceMarker">
+                          <p className="distance-marker">
                             {Math.round(distance)}m.
                           </p>
                         </h4>
                       </Link>
                       <div className="d-flex justify-content-center">
+                        {/* library I am using for rating stars */}
                         <ReactStars
                           count={5}
                           value={rating}

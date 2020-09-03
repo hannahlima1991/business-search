@@ -5,6 +5,7 @@ import Details from "./components/Details";
 import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+//react routes pointing at specific componentes to conditionally render data.
 function App() {
   return (
     <Router>
