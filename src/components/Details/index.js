@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./Details.css";
 import catGif from "../assets/catGif.gif";
+import backArrow from "../assets/backArrow.svg";
 import { doCORSRequest, detailsHandler } from "../../utilities/utility";
 import ReactStars from "react-stars";
-import { render } from "react-dom";
 
+//My hooks to manage states and setting their initial state.
 function Details(props) {
   const [loading, setLoading] = useState(true);
   const [businessDetailsObject, setbusinessDetailsObject] = useState({
@@ -20,12 +21,13 @@ function Details(props) {
     },
     display_phone: "",
   });
-  const [ratingStars, setRatingStars] = useState("");
 
+  //every time the component mounts,useEffect will rerender the information.
   useEffect(() => {
     getBusinessDetails();
   }, []);
 
+  // I use props to read from the id on the specific object and display the information for the nested object
   const getBusinessDetails = async () => {
     const detailsApiRequest = `https://api.yelp.com/v3/businesses/${props.match.params.id}`;
     const options = {
@@ -39,6 +41,7 @@ function Details(props) {
     setbusinessDetailsObject(details);
   };
 
+  //deconstruction to get only the pertinent information from the details endpoint
   const {
     name,
     image_url,
@@ -52,11 +55,11 @@ function Details(props) {
   console.log(businessDetailsObject);
 
   return (
-    <div className="imageContainer">
+    <div className="image-container">
       <div className="container">
         {loading ? (
           // Loading gif
-          <img className="lodingGif" src={catGif} />
+          <img className="loding-gif" src={catGif} />
         ) : (
           // Business Details
           <div class="card mb-3 cardSize">
@@ -64,13 +67,13 @@ function Details(props) {
               <div class="col-md-6">
                 <img
                   src={image_url}
-                  class="card-img businessPicture"
+                  class="card-img business-picture"
                   alt="Food Plate"
                 />
               </div>
               <div class="col-md-6">
-                <div class="card-body businessDetails">
-                  <h5 class="card-title businessName">
+                <div class="card-body business-details">
+                  <h5 class="card-title business-name">
                     <b>{name}</b>
                   </h5>
                   <p class="card-text">
@@ -115,6 +118,12 @@ function Details(props) {
                         color2="#ffd700"
                         edit={true}
                         onChange={(stars) => localStorage.setItem(id, stars)}
+                      />
+                    </div>
+                    <div className="back-arrow">
+                      <img
+                        src={backArrow}
+                        onClick={() => props.history.push("/")}
                       />
                     </div>
                   </p>

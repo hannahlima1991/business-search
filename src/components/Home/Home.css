@@ -6,10 +6,10 @@
   width: 100%;
 }
 
-.userInput {
+.user-input {
   padding-top: 36px;
 }
-.searchButton {
+.search-button {
   margin-left: 3px;
   border-radius: 5px;
   border: 1px solid #1d3557;
@@ -17,7 +17,7 @@
   color: #1d3557;
   background-color: white;
 }
-.searchButton:hover {
+.search-button:hover {
   margin-left: 3px;
   border-radius: 5px;
   border: 1px solid #1d3557;
@@ -41,7 +41,7 @@
   margin: auto;
   font-family: fantasy;
 }
-.distanceMarker {
+.distance-marker {
   margin-top: 12px;
   color: #1d3557;
 }
