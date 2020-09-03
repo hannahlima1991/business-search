@@ -7,12 +7,12 @@ import {
   yelpDataHandler,
 } from "../../utilities/utility";
 import { Link } from "react-router-dom";
+import ReactStars from "react-stars";
 
 function Home() {
   const [inputValue, setInputValue] = useState("");
   const [businessList, setBusinessList] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log(loading);
 
   //ZIPCODE API
   const zipCodeLocation = async (userInput) => {
@@ -38,7 +38,6 @@ function Home() {
       url:
         yelpApiRequest + `/search?latitude=${latitude}&longitude=${longitude}`,
     };
-    console.log(options.url);
     const listOfBusinesses = await doCORSRequest(options, yelpDataHandler).then(
       (data) => data
     );
@@ -46,10 +45,11 @@ function Home() {
     setBusinessList(listOfBusinesses);
   };
 
-  console.log(businessList);
-
   return (
-    <div className="wrapper">
+    <div
+      className="wrapper"
+      style={{ height: businessList.length === 0 ? "100vh" : "100%" }}
+    >
       <div className="userInput">
         <input
           className="textBox"
@@ -76,7 +76,7 @@ function Home() {
           <div className="row businessCard">
             {businessList.map((business, i) => {
               const businessId = "/business/" + business.id;
-              const { id, name } = business;
+              const { id, name, rating } = business;
               return (
                 <div className="col-lg-4 businessCardList" key={i}>
                   <Link to={businessId}>
@@ -85,6 +85,15 @@ function Home() {
                         <h4 className="card-title">
                           <b>{name}</b>
                         </h4>
+                        <div className="d-flex justify-content-center">
+                          <ReactStars
+                            count={5}
+                            value={rating}
+                            size={24}
+                            color2="#ffd700"
+                            edit={false}
+                          />
+                        </div>
                       </div>
                     </div>
                   </Link>
