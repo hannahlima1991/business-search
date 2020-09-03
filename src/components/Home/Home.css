@@ -1,6 +1,6 @@
 .wrapper {
   text-align: center;
-  background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/spikes.png");
+  background-image: url("https://cdn.clipart.email/cff7cca5b2748733c342834249e20455_white-pattern-backgrounds-barbaras-hd-wallpapers_2560-1440.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
@@ -30,18 +30,18 @@
 }
 .card {
   margin: 10px 15px;
-  min-height: 160px;
+  min-height: 192px;
   min-width: 300px;
   position: relative;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 2px 3px 0px rgba(0, 0, 0, 0.12);
 }
 .card-title b {
   color: #1d3557;
   margin: auto;
   font-family: fantasy;
 }
-.verticalCenter {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+.distanceMarker {
+  margin-top: 12px;
+  color: #1d3557;
 }
