@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bcd66c2c55f08fad8c1cf6e488c3e841",
+    "revision": "2d5655162f2ce6988e0057b8ee3ef6ff",
     "url": "/business-search/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/business-search/static/css/2.4707e12a.chunk.css"
   },
   {
-    "revision": "3a2fd8624b3c2a4d05ff",
+    "revision": "dc6522b131bf9538ab2b",
     "url": "/business-search/static/css/main.79c38a7c.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/business-search/static/js/2.afe0d8d4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3a2fd8624b3c2a4d05ff",
-    "url": "/business-search/static/js/main.d39a8cd1.chunk.js"
+    "revision": "dc6522b131bf9538ab2b",
+    "url": "/business-search/static/js/main.e31bc47a.chunk.js"
   },
   {
     "revision": "574899a3036d22ccd646",
