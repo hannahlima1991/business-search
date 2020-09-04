@@ -44,4 +44,9 @@
 .distance-marker {
   margin-top: 12px;
   color: #1d3557;
+  border-top: 1px solid #00b4d8;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px auto;
+  text-decoration: none;
 }
