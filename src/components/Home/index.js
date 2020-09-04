@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./Home.css";
 import catGif from "../assets/catGif.gif";
 import {
@@ -14,6 +16,13 @@ function Home() {
   const [inputValue, setInputValue] = useState("");
   const [businessList, setBusinessList] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+    AOS.refresh();
+  }, []);
 
   //I have a second api that translates zip code to lat,lng, this was necessary because Yelp's api doens't work with zip code
   //ZIPCODE API- The zip code function works by passing the user input variable as an argument,and wait for doCorsRequest to give me back the data
@@ -88,14 +97,18 @@ function Home() {
         {loading ? (
           <img className="loding-gif" src={catGif} />
         ) : (
-          <div className="row business-card">
+          <div className="row business-card ">
             {businessList.map((business, i) => {
               const businessId = "/business/" + business.id;
               // getting only the keys i need from the responseObject
               const { id, name, rating, distance } = business;
 
               return (
-                <div className="col-lg-4 business-card-list" key={i}>
+                <div
+                  className="col-lg-4 business-card-list"
+                  key={i}
+                  data-aos="fade-up"
+                >
                   <div className="card">
                     <div className="card-body vertical-center text-center w-100">
                       <Link to={businessId}>
